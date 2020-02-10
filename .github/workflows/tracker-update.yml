@@ -26,8 +26,13 @@ jobs:
             aria2.conf
             grep -E '^bt-tracker\=' aria2.conf
 
-      - name: Git Auto Commit
-        uses: stefanzweifel/git-auto-commit-action@v3.0.0
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Add changes" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-            # Commit message
-            commit_message: Tracker Update
+          github_token: ${{ secrets.GITHUB_TOKEN }}
