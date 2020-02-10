@@ -25,8 +25,6 @@ jobs:
             gsed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
             aria2.conf aria2_cli.conf
 
-      - name: Commit push and pr
-        uses: golfzaptw/action-commit-push-pr@master
+      - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COMMIT_MESSAGE: 'Tracker Update'
+          commit_message: Apply automatic changes
