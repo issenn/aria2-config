@@ -25,13 +25,8 @@ jobs:
             gsed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
             aria2.conf aria2_cli.conf
 
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "Tracker Update" -a
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Commit push and pr
+        uses: golfzaptw/action-commit-push-pr@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_MESSAGE: 'Tracker Update'
