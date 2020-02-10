@@ -8,21 +8,19 @@ jobs:
   build:
 
     name: Tracker Update
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - name: Run a multi-line script
         run: |
-          brew update
-          brew install curl gawk gnu-sed findutils
           curl -fs -C - \
             https://raw.githubusercontent.com/ngosang/trackerslist/master/{trackers_all,trackers_all_ws,trackers_all_ip}.txt \
             https://newtrackon.com/api/stable?include_ipv6_only_trackers=0 \
-            | gawk NF \
-            | gsed ':a;N;s/\n/,/g;ta' \
-            | gxargs -r -n 1 -I '{}' \
-            gsed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
+            | awk NF \
+            | sed ':a;N;s/\n/,/g;ta' \
+            | xargs -r -n 1 -I '{}' \
+            sed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
             aria2.conf aria2_cli.conf
 
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
