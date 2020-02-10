@@ -19,4 +19,3 @@ curl -fs -C - \
   /usr/local/opt/gnu-sed/bin/gsed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
   /usr/local/etc/aria2/aria2.conf
 ```
-
