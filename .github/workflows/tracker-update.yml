@@ -23,14 +23,13 @@ jobs:
             | gsed ':a;N;s/\n/,/g;ta' \
             | gxargs -r -n 1 -I '{}' \
             gsed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
-            aria2.conf
-            grep -E '^bt-tracker\=' aria2.conf
+            aria2.conf aria2_cli.conf
 
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Add changes" -a
+          git commit -m "Tracker Update" -a
 
       - name: Push changes
         uses: ad-m/github-push-action@master
