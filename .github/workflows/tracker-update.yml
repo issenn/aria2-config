@@ -21,7 +21,7 @@ jobs:
             | sed ':a;N;s/\n/,/g;ta' \
             | xargs -r -n 1 -I '{}' \
             sed -i '/^bt-tracker\=/{h;s#\(^bt-tracker\=\).*$#\1{}#};${x;/^$/{s##bt-tracker\={}#;H};x}' \
-            aria2.conf aria2_cli.conf
+            .config/aria2/aria2.conf .config/aria2/aria2_cli.conf
 
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:

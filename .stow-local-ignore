@@ -1,0 +1,35 @@
+# Comments and blank lines are allowed.
+
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+\.gitmodules
+\.gitkeep
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+.*\.md
+
+\.DS_Store
+.*.example
+.*.swp
+^/@.*
+
+^/\.github
+\.editorconfig
+
+# Custom rules (everything added below won't be overriden by 'Generate .stow-local-ignore File' if you use 'Update' option)
